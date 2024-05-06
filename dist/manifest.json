@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "name": "Vault Password Extension",
+  "description": "This Extension will display Passwords from the Wunderman Thompson Vault Service",
+  "action": {
+    "default_popup": "js/index.html",
+    "default_title": "Vault Password Extension"
+  }
+}

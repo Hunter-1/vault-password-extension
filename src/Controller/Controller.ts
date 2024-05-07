@@ -8,13 +8,22 @@ class Controller {
     this.model = model;
   }
   static async init() {
-    return new Controller(new Model(await callFavorites(0)));
+    const [status, data] = await callFavorites(0);
+    if (status == 200) {
+      return new Controller(new Model(data));
+    } else {
+      return status;
+    }
   }
 
   async callPasswordEntry(id: string) {
     const requestUrl = this.model.getRequestUrl(id);
     if (requestUrl) {
-      this.model.updateEntry(id, await callApi(requestUrl));
+      const [status, data] = await callApi(requestUrl);
+      if (status == 200) {
+        this.model.updateEntry(id, data);
+      }
+      return status;
     }
   }
 
@@ -35,7 +44,11 @@ class Controller {
     ) {
       return;
     } else {
-      this.model = new Model(await callFavorites(currentPage + changeAmount));
+      const [status, data] = await callFavorites(currentPage + changeAmount);
+      if (status == 200) {
+        this.model = new Model(data);
+      }
+      return status;
     }
   }
 }

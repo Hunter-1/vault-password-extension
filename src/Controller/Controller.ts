@@ -2,12 +2,12 @@ import Model from "../Model/Model";
 import callFavorites from "./API/callFavorites";
 
 class Controller {
-  model?: Model;
-  constructor() {
-    this.init();
+  model: Model;
+  constructor(model: Model) {
+    this.model = model;
   }
-  async init() {
-    this.model = new Model(callFavorites());
+  static async init() {
+    return new Controller(new Model(await callFavorites()));
   }
 }
 

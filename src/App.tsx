@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import callFavorites from "./Controller/API/callFavorites";
 import Controller from "./Controller/Controller";
 
 function App() {
-  const controller = new Controller();
-  const [favorites, setfavorites] = useState<string | null>(null);
+  const [controller, setController] = useState<Controller | null>(null);
   useEffect(() => {
-    callFavorites().then((data: string) => setfavorites(data));
+    const newController = async () => {
+      setController(await Controller.init());
+    };
+    newController();
   }, []);
   return (
     <div className="App">
-      <div>{controller.model.getItemCount()}</div>
-      <div>{favorites}</div>
+      <div>Test</div>
+      <div>{controller?.model.getItemCount()}</div>
     </div>
   );
 }

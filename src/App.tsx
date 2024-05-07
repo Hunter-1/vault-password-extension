@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import callFavorites from "./Controller/API/callFavorites";
 import Controller from "./Controller/Controller";
 
 function App() {
   const [controller, setController] = useState<Controller | null>(null);
   useEffect(() => {
     const newController = async () => {
-      setController(await Controller.init());
+      const newController = await Controller.init();
+      setController(newController);
     };
     newController();
   }, []);

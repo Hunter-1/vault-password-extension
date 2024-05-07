@@ -1,8 +1,10 @@
 import callApi from "./callApi";
 
-async function callFavorites() {
+async function callFavorites(pageNumber: number) {
   return callApi(
-    "https://vault.wundermanthompson.ch/api/favorites?Page=0&ClientID="
+    "https://vault.wundermanthompson.ch/api/favorites?Page=" +
+      pageNumber +
+      "&ClientID="
   );
 }
 

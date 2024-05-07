@@ -1,7 +1,11 @@
 export class passwordEntry {
-  id?: number;
-  title?: string;
-  url?: string;
-  readPermissions?: boolean;
-  requestUrl?: string;
+  id: string = "";
+  title: string = "";
+  url: string = "";
+  readPermissions: boolean = false;
+  requestUrl: string = "";
+  credentials: boolean = false;
+  comment: string = "";
+  username: string = "";
+  password: string = "";
 }

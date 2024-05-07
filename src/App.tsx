@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Controller from "./Controller/Controller";
+import View from "./View/View";
+import "./View/style.css";
 
 function App() {
   const [controller, setController] = useState<Controller | null>(null);
@@ -17,11 +19,12 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <div>Test</div>
       <div>
-        {controller
-          ? controller.model.getItemCount()
-          : "Api Call Failed: Error Code " + status}
+        {controller ? (
+          <View controller={controller} />
+        ) : (
+          "Api Call Failed: Error Code " + status
+        )}
       </div>
     </div>
   );

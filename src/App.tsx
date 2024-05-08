@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Controller from "./Controller/Controller";
 import View from "./View/View";
 import "./View/style.css";
+import ViewProvider from "./View/Context/ViewProvider";
 
 function App() {
   const [controller, setController] = useState<Controller | null>(null);
@@ -21,7 +22,9 @@ function App() {
     <div className="App">
       <div>
         {controller ? (
-          <View controller={controller} />
+          <ViewProvider controller={controller}>
+            <View controller={controller} />
+          </ViewProvider>
         ) : (
           "Api Call Failed: Error Code " + status
         )}

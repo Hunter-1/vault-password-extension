@@ -19,7 +19,6 @@ class Model {
       this.#passwordEntries.entries.push(entry);
     });
   }
-
   updateEntry(id: string, data: any) {
     const entry = this.getEntry(id);
     if (entry) {

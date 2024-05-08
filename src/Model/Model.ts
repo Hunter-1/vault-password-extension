@@ -37,8 +37,28 @@ class Model {
     return this.#passwordEntries.currentPage;
   }
 
-  getEntries() {
-    return this.#passwordEntries.entries;
+  getEntriesByName() {
+    const entriesByName = this.#passwordEntries.entries;
+    entriesByName.sort((a, b) => a.title.localeCompare(b.title));
+    return entriesByName;
+  }
+
+  compareURLs(a: passwordEntry, b: passwordEntry) {
+    if (a.url == "") {
+      return 1;
+    } else if (b.url == "") {
+      return -1;
+    } else {
+      return a.url.localeCompare(b.url);
+    }
+  }
+
+  getEntriesByURL() {
+    const entriesByUrl = this.#passwordEntries.entries;
+    entriesByUrl.sort((a, b) => {
+      return this.compareURLs(a, b);
+    });
+    return entriesByUrl;
   }
 
   getEntry(id: string) {

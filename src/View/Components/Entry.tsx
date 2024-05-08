@@ -1,12 +1,13 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { passwordEntry } from "../../Model/Data/passwordEntry";
 import ViewContext from "../Context/ViewContext";
 
 interface viewProps {
   entry: passwordEntry;
+  sortByUrl: boolean;
 }
 
-const Entry: React.FC<viewProps> = ({ entry }) => {
+const Entry: React.FC<viewProps> = ({ entry, sortByUrl }) => {
   const controller = useContext(ViewContext).controller;
   const [display, setDisplay] = useState<boolean>(false);
   async function toggleDisplay() {
@@ -23,6 +24,9 @@ const Entry: React.FC<viewProps> = ({ entry }) => {
   function copyToClipboard(text: string) {
     navigator.clipboard.writeText(text);
   }
+  useEffect(() => {
+    setDisplay(false);
+  }, [sortByUrl, controller?.model]);
   return (
     <div className="entry">
       <h2 className="entryTitle">{entry.title}</h2>

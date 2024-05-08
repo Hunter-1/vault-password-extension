@@ -23,17 +23,21 @@ const View: React.FC<viewProps> = ({ controller }) => {
   function toggleSortByUrl() {
     const oldSortByUrl = sortByUrl;
     setSortByUrl(!oldSortByUrl);
-    console.log(!oldSortByUrl);
   }
   return (
     <div className="View">
-      <h1>Vault Password Extension</h1>
-      <div>
-        <button onClick={() => toggleSortByUrl()}>
-          {sortByUrl ? "Sort By Name" : "Sort By Url"}
-        </button>
-        <button onClick={() => togglePreviousPage()}>Previous</button>
-        <button onClick={() => toggleNextPage()}>Next</button>
+      <h1 className="Title">Vault Password Extension</h1>
+      <div className="Menu">
+        <div className="PageButtons">
+          <button onClick={() => togglePreviousPage()}>Previous</button>
+          <button onClick={() => toggleNextPage()}>Next</button>
+        </div>
+        <div className="Sort">
+          <span className="SortText">Sort By:</span>
+          <button onClick={() => toggleSortByUrl()}>
+            {sortByUrl ? "Name" : "Url"}
+          </button>
+        </div>
       </div>
       <div>
         {entries.map(function (entry) {

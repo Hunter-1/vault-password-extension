@@ -6,14 +6,15 @@ import ViewProvider from "./View/Context/ViewProvider";
 
 function App() {
   const [controller, setController] = useState<Controller | null>(null);
-  const [status, setStatus] = useState<number>(200);
+  const [status, setStatus] = useState<string>("Loading...");
+
   useEffect(() => {
     const newController = async () => {
       const newController = await Controller.init();
-      if (typeof newController) {
+      if (typeof newController != "number") {
         setController(newController);
       } else {
-        setStatus(newController);
+        setStatus("The Api Call has failed, please try again.");
       }
     };
     newController();
@@ -26,7 +27,7 @@ function App() {
             <View controller={controller} />
           </ViewProvider>
         ) : (
-          "Api Call Failed: Error Code " + status
+          status
         )}
       </div>
     </div>

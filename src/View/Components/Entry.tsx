@@ -34,7 +34,8 @@ const Entry: React.FC<viewProps> = ({ entry, sortByUrl }) => {
       <button onClick={toggleDisplay}>Display Credentials</button>
       {display && (
         <div>
-          <p>{entry.username}</p>
+          <span>{entry.username}</span>
+          <span>Username</span>
           <button
             onClick={() => {
               copyToClipboard(entry.username);
@@ -42,7 +43,8 @@ const Entry: React.FC<viewProps> = ({ entry, sortByUrl }) => {
           >
             Copy Username
           </button>
-          <p>{entry.password}</p>
+          <span>{entry.password}</span>
+          <span>Password</span>
           <button
             onClick={() => {
               copyToClipboard(entry.password);

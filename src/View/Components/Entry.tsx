@@ -20,6 +20,9 @@ const Entry: React.FC<viewProps> = ({ entry }) => {
     const oldDisplay = display;
     setDisplay(!oldDisplay);
   }
+  function copyToClipboard(text: string) {
+    navigator.clipboard.writeText(text);
+  }
   return (
     <div className="entry">
       <h2 className="entryTitle">{entry.title}</h2>
@@ -28,7 +31,21 @@ const Entry: React.FC<viewProps> = ({ entry }) => {
       {display && (
         <div>
           <p>{entry.username}</p>
+          <button
+            onClick={() => {
+              copyToClipboard(entry.username);
+            }}
+          >
+            Copy Username
+          </button>
           <p>{entry.password}</p>
+          <button
+            onClick={() => {
+              copyToClipboard(entry.password);
+            }}
+          >
+            Copy Password
+          </button>
           <p>{entry.comment}</p>
         </div>
       )}

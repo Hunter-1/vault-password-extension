@@ -29,6 +29,7 @@ const Entry: React.FC<viewProps> = ({ entry }) => {
         <div>
           <p>{entry.username}</p>
           <p>{entry.password}</p>
+          <p>{entry.comment}</p>
         </div>
       )}
       <div></div>

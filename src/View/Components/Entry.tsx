@@ -29,33 +29,54 @@ const Entry: React.FC<viewProps> = ({ entry, sortByUrl }) => {
   }, [sortByUrl, controller?.model]);
   return (
     <div className="entry">
-      <h2 className="entryTitle">{entry.title}</h2>
-      <h3 className="entryUrl">{entry.url}</h3>
-      <button onClick={toggleDisplay}>Display Credentials</button>
+      <div className="entryListing">
+        <div className="entryInfo">
+          <h2 className="entryTitle">{entry.title}</h2>
+          <h3 className="entryUrl">{entry.url}</h3>
+        </div>
+        {entry.readPermissions ? (
+          <button className="entryCredentialsButton" onClick={toggleDisplay}>
+            Display Credentials
+          </button>
+        ) : (
+          <button disabled={true} className="entryCredentialsButton">
+            Permission Denied
+          </button>
+        )}
+      </div>
       {display && (
         <div>
-          <span>{entry.username}</span>
-          <span>Username</span>
-          <button
-            onClick={() => {
-              copyToClipboard(entry.username);
-            }}
-          >
-            Copy Username
-          </button>
-          <span>{entry.password}</span>
-          <span>Password</span>
-          <button
-            onClick={() => {
-              copyToClipboard(entry.password);
-            }}
-          >
-            Copy Password
-          </button>
+          <div className="entryProperty">
+            <div className="entryDisplay">
+              <div className="entryText">{entry.username}</div>
+              <div>Username</div>
+            </div>
+            <button
+              className="displayButton"
+              onClick={() => {
+                copyToClipboard(entry.username);
+              }}
+            >
+              Copy Username
+            </button>
+          </div>
+          <div className="entryProperty">
+            <div className="entryDisplay">
+              <div className="entryText">{entry.password}</div>
+              <div>Password</div>
+            </div>
+            <button
+              className="displayButton"
+              onClick={() => {
+                copyToClipboard(entry.password);
+              }}
+            >
+              Copy Password
+            </button>
+          </div>
           <p>{entry.comment}</p>
         </div>
       )}
-      <div></div>
     </div>
   );
 };

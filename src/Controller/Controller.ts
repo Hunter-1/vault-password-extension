@@ -35,7 +35,6 @@ class Controller {
     } else {
       this.ok = true;
     }
-    console.log(this.ok);
   }
 
   getOk() {
@@ -51,12 +50,8 @@ class Controller {
   }
 
   async changePage(changeAmount: number) {
-    const totalCount = this.model.getItemCount();
     const currentPage = this.model.getCurrentPage();
-    if (
-      currentPage + changeAmount >= totalCount ||
-      currentPage + changeAmount < 0
-    ) {
+    if (!this.checkIfTurnable(changeAmount)) {
       return;
     } else {
       const [status, data] = await callFavorites(currentPage + changeAmount);
@@ -67,6 +62,26 @@ class Controller {
       return status;
     }
   }
-}
 
+  checkIfPreviousTurnable() {
+    return this.checkIfTurnable(-20);
+  }
+
+  checkIfNextTurnable() {
+    return this.checkIfTurnable(20);
+  }
+
+  checkIfTurnable(changeAmount: number) {
+    const totalCount = this.model.getItemCount();
+    const currentPage = this.model.getCurrentPage();
+    if (
+      currentPage + changeAmount >= totalCount ||
+      currentPage + changeAmount < 0
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
 export default Controller;

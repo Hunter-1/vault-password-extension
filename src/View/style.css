@@ -1,4 +1,85 @@
 body {
   min-width: 400px;
   min-height: 800px;
+  word-wrap: break-word;
+  background-color: gainsboro;
+}
+button {
+  height: 40px;
+  border-radius: 0;
+  border-width: 1px;
+}
+.title {
+  margin-left: 20px;
+}
+.menu {
+  display: flex;
+  margin: 20px;
+}
+.pageButtons {
+  flex: 0 0 70%;
+  margin: auto;
+}
+.pageButtons button {
+  width: 40%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.sort {
+  display: block;
+  margin: auto;
+  width: 80px;
+}
+.sortInner {
+  position: relative;
+  margin: auto;
+}
+.sortText {
+  position: absolute;
+  top: -15px;
+}
+.sortButton {
+  width: 100%;
+}
+.entries {
+  background-color: #aaaaaa;
+}
+.entry {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: lightgray;
+}
+.entryListing {
+  display: flex;
+  margin: auto;
+}
+.entryProperty {
+  display: flex;
+  margin-bottom: 5px;
+}
+.entryInfo,
+.entryDisplay {
+  flex: 0 0 70%;
+  max-width: 70%;
+  margin-right: 20px;
+}
+.entryText {
+  font-size: 15px;
+}
+.entry .entryCredentialsButton {
+  flex: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.displayButton {
+  flex: 1;
+}
+.error {
+  font-size: 16px;
+  width: 80%;
+  margin: auto;
+}
+.bottom {
+  margin-bottom: 10px;
 }

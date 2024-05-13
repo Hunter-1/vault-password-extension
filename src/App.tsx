@@ -6,14 +6,28 @@ import ViewProvider from "./View/Context/ViewProvider";
 
 function App() {
   const [controller, setController] = useState<Controller | null>(null);
-  const [status, setStatus] = useState<number>(200);
+  const [status, setStatus] = useState<string>(
+    "Loading... | The First time loading this extension will require a few seconds of warmup, so give it a little time"
+  );
+
   useEffect(() => {
     const newController = async () => {
       const newController = await Controller.init();
-      if (typeof newController) {
+      if (typeof newController != "number") {
         setController(newController);
+      } else if (newController == -1) {
+        setStatus(
+          "The Extension failed to connect due to a bad Internet connection, are you connected to the internet?"
+        );
+      } else if (newController == 401) {
+        setStatus(
+          "The Extension failed to connect due to bad Credentials, did you type your Login correctly?"
+        );
       } else {
-        setStatus(newController);
+        setStatus(
+          "The Extension failed to connect, please try again. | Error Code: " +
+            newController
+        );
       }
     };
     newController();
@@ -26,7 +40,7 @@ function App() {
             <View controller={controller} />
           </ViewProvider>
         ) : (
-          "Api Call Failed: Error Code " + status
+          <div className="error">{status}</div>
         )}
       </div>
     </div>

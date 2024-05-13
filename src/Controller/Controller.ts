@@ -4,6 +4,7 @@ import callFavorites from "./API/callFavorites";
 
 class Controller {
   model: Model;
+  ok: boolean = true;
   constructor(model: Model) {
     this.model = model;
   }
@@ -23,8 +24,21 @@ class Controller {
       if (status == 200) {
         this.model.updateEntry(id, data);
       }
+      this.setOk(status);
       return status;
     }
+  }
+
+  async setOk(status: number) {
+    if (status == -1) {
+      this.ok = false;
+    } else {
+      this.ok = true;
+    }
+  }
+
+  getOk() {
+    return this.ok;
   }
 
   async nextPage() {
@@ -36,21 +50,38 @@ class Controller {
   }
 
   async changePage(changeAmount: number) {
-    const totalCount = this.model.getItemCount();
     const currentPage = this.model.getCurrentPage();
-    if (
-      currentPage + changeAmount >= totalCount ||
-      currentPage + changeAmount < 0
-    ) {
+    if (!this.checkIfTurnable(changeAmount)) {
       return;
     } else {
       const [status, data] = await callFavorites(currentPage + changeAmount);
       if (status == 200) {
         this.model = new Model(data);
       }
+      this.setOk(status);
       return status;
     }
   }
-}
 
+  checkIfPreviousTurnable() {
+    return this.checkIfTurnable(-20);
+  }
+
+  checkIfNextTurnable() {
+    return this.checkIfTurnable(20);
+  }
+
+  checkIfTurnable(changeAmount: number) {
+    const totalCount = this.model.getItemCount();
+    const currentPage = this.model.getCurrentPage();
+    if (
+      currentPage + changeAmount >= totalCount ||
+      currentPage + changeAmount < 0
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
 export default Controller;

@@ -4,6 +4,7 @@ import callFavorites from "./API/callFavorites";
 
 class Controller {
   model: Model;
+  ok: boolean = true;
   constructor(model: Model) {
     this.model = model;
   }
@@ -23,8 +24,22 @@ class Controller {
       if (status == 200) {
         this.model.updateEntry(id, data);
       }
+      this.setOk(status);
       return status;
     }
+  }
+
+  async setOk(status: number) {
+    if (status == -1) {
+      this.ok = false;
+    } else {
+      this.ok = true;
+    }
+    console.log(this.ok);
+  }
+
+  getOk() {
+    return this.ok;
   }
 
   async nextPage() {
@@ -48,6 +63,7 @@ class Controller {
       if (status == 200) {
         this.model = new Model(data);
       }
+      this.setOk(status);
       return status;
     }
   }

@@ -1,0 +1,39 @@
+{
+  "ItemsCount": 1,
+  "ItemsPerPage": 20,
+  "NumberOfPages": 1,
+  "CurrentPage": 0,
+  "UrlPreviousPage": "",
+  "UrlNextPage": "",
+  "FoundItems": [
+    {
+      "Id": "44eca64b-7d00-4968-9b28-ed26d8ba1462",
+      "PMUserId": "23a25e96-610b-42a5-8687-72fae8a28867",
+      "ClientId": null,
+      "Clientname": "-",
+      "Title": "Test Password",
+      "Username": "",
+      "Password": "",
+      "PasswordEncrypted": false,
+      "OwnershipChanged": false,
+      "Url": "",
+      "Comment": "Password use for testing Vault, does not contain any real passwords",
+      "CommentEncrypted": null,
+      "ReadAll": false,
+      "WriteAll": false,
+      "WritePermissions": false,
+      "ReadPermissions": true,
+      "IsNew": false,
+      "IsFavorite": true,
+      "Selected": false,
+      "Creationdate": "2024-02-15T14:05:28.323",
+      "Mutationdate": "2024-05-13T14:31:01.277",
+      "Expirationdate": null,
+      "PasswordExpired": false,
+      "Permissions": [],
+      "History": [],
+      "Tags": [],
+      "RequestUrl": "https://vault.wundermanthompson.ch/api/credentials/44eca64b-7d00-4968-9b28-ed26d8ba1462"
+    }
+  ]
+}

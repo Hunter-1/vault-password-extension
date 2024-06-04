@@ -1,6 +1,6 @@
 async function callApi(url: string) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { credentials: "include" });
     //console.log(response);
     var data;
     if (response.status == 200) {
